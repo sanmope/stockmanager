@@ -1,0 +1,7 @@
+.classpath
+.project
+.settings
+log.txt
+stockmanager.log
+target/
+stockmanager.tmp
