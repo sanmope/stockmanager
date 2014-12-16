@@ -1,5 +1,7 @@
 package com.terabyte.stockmanager.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,9 +11,11 @@ public class Product {
 
 	@Id @GeneratedValue
 	private long id;
+	private Integer barcode;
 	private String name;
-	private int quantity;
-	private Double price;
+	private BigDecimal quantity;
+	private BigDecimal price;
+	private BigDecimal cost;
 	private String description;
 	public long getId() {
 		return id;
@@ -25,13 +29,16 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getQuantity() {
+	public BigDecimal getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int age) {
-		this.quantity = age;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 
 	}
+	
+
+	
     public String getDescription() {
         return description;
     }
@@ -40,11 +47,11 @@ public class Product {
         this.description = description;
     }
 	
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 	        return price;
     }
     
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     
@@ -54,4 +61,21 @@ public class Product {
         buffer.append("Price: " + price);
         return buffer.toString();
     }
+	public BigDecimal getCost() {
+		return cost;
+	}
+	public void setCost(BigDecimal cost) {
+		this.cost = cost;
+	}
+	public int getBarcode() {
+		return barcode;
+	}
+	public void setBarcode(int barcode) {
+		this.barcode = barcode;
+	}
+	public void decreaseQuantity(BigDecimal quantityDecreased) {
+		
+		setQuantity( getQuantity().min(quantityDecreased) ); 
+	}
+	
 }

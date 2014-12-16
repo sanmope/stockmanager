@@ -8,9 +8,9 @@
 </head>
 <body>
 <mytags:menu/>
-<h3>Persons</h3>
+<h3>Clients</h3>
 <c:choose>
-	<c:when test="${fn:length(persons) gt 0}">
+	<c:when test="${fn:length(clients) gt 0}">
 		<table border=1>
 			<tr>
 				<th>id</th>
@@ -27,25 +27,25 @@
 				
 				
 			</tr>
-			<c:forEach var="person" items="${persons}">
-				<tr class="${person.age gt 70 ? 'senior' : 'junior'}">
-					<td><c:out value="${person.id}"/></td>
-					<td>${person.name}</td>
-					<td>${person.lastName}</td>
-					<td>${person.address}</td>
-					<td>${person.phoneHome}</td>
-					<td>${person.phoneCell}</td>
-					<td>${person.phoneOffice}</td>
-					<td>${person.eMail}</td>
-					<td>${person.occupation}</td>
-					<td>${person.age}</td>
-					<td>${person.phoneHome}</td>
+			<c:forEach var="client" items="${clients}">
+				<tr class="${client.age gt 70 ? 'senior' : 'junior'}">
+					<td><c:out value="${client.id}"/></td>
+					<td>${client.name}</td>
+					<td>${client.lastName}</td>
+					<td>${client.address}</td>
+					<td>${client.phoneHome}</td>
+					<td>${client.phoneCell}</td>
+					<td>${client.phoneOffice}</td>
+					<td>${client.eMail}</td>
+					<td>${client.occupation}</td>
+					<td>${client.age}</td>
+					<td>${client.phoneHome}</td>
 					<td><input type="submit" /></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:when>
-	<c:otherwise>No persons</c:otherwise>
+	<c:otherwise>No clients</c:otherwise>
 </c:choose>
 <mytags:footer/>
 

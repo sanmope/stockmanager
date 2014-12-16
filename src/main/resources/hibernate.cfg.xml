@@ -7,6 +7,11 @@
 		<mapping class="com.terabyte.stockmanager.model.Product"/>
 		<mapping class="com.terabyte.stockmanager.model.Person"/>
 		<mapping class="com.terabyte.stockmanager.model.User"/>
-		<mapping class="com.terabyte.stockmanager.model.Authority"/>		
+		<mapping class="com.terabyte.stockmanager.model.Authority"/>	
+		<mapping class="com.terabyte.stockmanager.model.Client"/>
+		<mapping class="com.terabyte.stockmanager.model.Job"/>
+		<!-- <mapping class="com.terabyte.stockmanager.model.Device"/>  -->
+		<!-- <mapping class="com.terabyte.stockmanager.model.JobDetail"/> -->
+		<!-- <mapping class="com.terabyte.stockmanager.model.ProductItem"/>	-->						
     </session-factory>
 </hibernate-configuration>

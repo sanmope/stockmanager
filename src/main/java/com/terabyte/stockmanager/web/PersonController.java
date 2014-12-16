@@ -19,16 +19,16 @@ public class PersonController {
 	private SessionFactory sessionFactory;
 
 	@RequestMapping(value="/addPerson.htm", method=RequestMethod.POST)
-	public ModelAndView addPerson(Person p, Errors errors)
+	public ModelAndView addPerson(Person person, Errors errors)
 	{
 		if (errors.hasErrors())
 		{
-			ModelAndView mav = new ModelAndView("addPerson");
-			mav.addObject("errors", errors);
-			return mav;
+			ModelAndView modelAndView = new ModelAndView("addPerson");
+			modelAndView.addObject("errors", errors);
+			return modelAndView;
 		}
 		
-		sessionFactory.getCurrentSession().save(p);	
+		sessionFactory.getCurrentSession().save(person);	
 		return new ModelAndView("redirect:/allPersons.htm");
 	}
 
@@ -46,9 +46,35 @@ public class PersonController {
 		List<Person> persons = sessionFactory.getCurrentSession().
 			createQuery("FROM Person").list();
 		
-		ModelAndView mav = new ModelAndView("allPersons");
-		mav.addObject("persons", persons);
-		return mav;
+		ModelAndView modelAndView = new ModelAndView("allPersons");
+		modelAndView.addObject("persons", persons);
+		return modelAndView;
 	}
 	
+	
+	
+	@RequestMapping(value="/editPerson.htm", method=RequestMethod.GET)
+	public ModelAndView editPerson()
+	{
+		List<Person> persons = sessionFactory.getCurrentSession().
+				createQuery("FROM Person").list();
+			
+			ModelAndView modelAndView = new ModelAndView("editPerson");
+			modelAndView.addObject("person", persons.get(0));
+			return modelAndView;
+	}
+	
+	@RequestMapping(value="/editPerson.htm", method=RequestMethod.POST)
+	public ModelAndView editPerson(Person person, Errors errors)
+	{
+		if (errors.hasErrors())
+		{
+			ModelAndView modelAndView = new ModelAndView("editPerson");
+			modelAndView.addObject("errors", errors);
+			return modelAndView;
+		}
+		sessionFactory.getCurrentSession().update(person);	
+		return new ModelAndView("redirect:/allPersons.htm");
+	}
+
 }
