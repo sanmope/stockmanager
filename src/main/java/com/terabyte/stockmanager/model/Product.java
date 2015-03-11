@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -13,10 +16,15 @@ public class Product {
 	private long id;
 	private Integer barcode;
 	private String name;
-	private BigDecimal quantity;
+	private Integer quantity;
 	private BigDecimal price;
 	private BigDecimal cost;
 	private String description;
+
+	
+	public void setBarcode(Integer barcode) {
+		this.barcode = barcode;
+	}
 	public long getId() {
 		return id;
 	}
@@ -29,10 +37,10 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public BigDecimal getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(BigDecimal quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 
 	}
@@ -73,9 +81,9 @@ public class Product {
 	public void setBarcode(int barcode) {
 		this.barcode = barcode;
 	}
-	public void decreaseQuantity(BigDecimal quantityDecreased) {
+	public void decreaseQuantity(Integer quantity) {
 		
-		setQuantity( getQuantity().min(quantityDecreased) ); 
+		setQuantity( getQuantity() - quantity ); 
 	}
 	
 }

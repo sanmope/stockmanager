@@ -3,6 +3,7 @@ package com.terabyte.stockmanager.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
@@ -18,6 +19,10 @@ public class Client {
 	private String eMail;
 	private String occupation;
 	private int age;
+	private boolean female;
+	private String[] interests;
+
+
 	public long getId() {
 		return id;
 	}
@@ -78,6 +83,18 @@ public class Client {
 	}
 	public void setOccupation(String ocupation) {
 		this.occupation = ocupation;
+	}
+	public boolean isFemale() {
+		return female;
+	}
+	public void setFemale(boolean female) {
+		this.female = female;
+	}
+	public String[] getInterests() {
+		return interests;
+	}
+	public void setInterests(String[] interests) {
+		this.interests = interests;
 	}
 	
 }

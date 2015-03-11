@@ -44,7 +44,10 @@
 		<servlet-name>stockmanager</servlet-name>
 		<url-pattern>*.htm</url-pattern>
 		<url-pattern>*.json</url-pattern>
+
 	</servlet-mapping>
+	
+	
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

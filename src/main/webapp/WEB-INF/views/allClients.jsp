@@ -1,55 +1,37 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script> 
+
 <mytags:jquery />
 <mytags:style />
+
+<title>Spring Auto-complete</title>
+<script type="text/javascript">
+
+    $(function() {  
+        $("#tagsName").autocomplete({
+            source: function (request, response) {
+                $.getJSON("${pageContext.request.contextPath}/${"getMachedNames.htm"}", {
+                    term: request.term
+                }, response);
+            }
+        });
+    });
+    
+</script> 
 </head>
 <body>
-<mytags:menu/>
-<h3>Clients</h3>
-<c:choose>
-	<c:when test="${fn:length(clients) gt 0}">
-		<table border=1>
-			<tr>
-				<th>id</th>
-				<th>Name</th>
-				<th>lastName</th>
-				<th>address</th>
-				<th>phoneHome</th>
-				<th>phoneCell</th>								
-				<th>phoneOffice</th>
-				<th>eMail</th>
-				<th>occupation</th>
-				<th>age</th>
-				<th>edit</th>
-				
-				
-			</tr>
-			<c:forEach var="client" items="${clients}">
-				<tr class="${client.age gt 70 ? 'senior' : 'junior'}">
-					<td><c:out value="${client.id}"/></td>
-					<td>${client.name}</td>
-					<td>${client.lastName}</td>
-					<td>${client.address}</td>
-					<td>${client.phoneHome}</td>
-					<td>${client.phoneCell}</td>
-					<td>${client.phoneOffice}</td>
-					<td>${client.eMail}</td>
-					<td>${client.occupation}</td>
-					<td>${client.age}</td>
-					<td>${client.phoneHome}</td>
-					<td><input type="submit" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</c:when>
-	<c:otherwise>No clients</c:otherwise>
-</c:choose>
-<mytags:footer/>
-
+<form:form method="get" action="" >
+    <h1>${message}</h1>
+    Enter Name: <input id="tagsName">
+    
+</form:form>    
 </body>
 </html>
-
-

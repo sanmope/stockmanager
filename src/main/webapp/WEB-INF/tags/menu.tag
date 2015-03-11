@@ -1,15 +1,13 @@
 <div id="wrapper">
 <nav>
-	<ul>
+	<ul class="noPrint">
 		<li><a href="index.jsp">Home</a></li>
-		<li><a href="allClients.htm">All Clients</a></li>
-		<li><a href="addClient.htm">Add Person</a></li>
-		<li><a href="editClient.htm">Edit Client</a></li>
-		<li><a href="allProducts.htm">All Products</a></li>
-		<li><a href="newProduct.htm">New Product</a></li>
-		<li><a href="priceIncrease.htm">Increase Price</></li>
-		<li><a href="newJob.htm">New Job</></li>
-		<li><a href="search.htm">search</a></li>
+		<li>Nuevo Trabajo</li>
+		<li><a href="clients.htm">Cliente</a></li>
+		<li><a href="products.htm">Producto</a></li>
+		<li>Incrementar Precio</li>
+		<li><a href="productSale.htm">Venta de Producto</></li>
+		<li><a href="search.htm">Buscar</a></li>
 	</ul>
 </nav>
 <hr />

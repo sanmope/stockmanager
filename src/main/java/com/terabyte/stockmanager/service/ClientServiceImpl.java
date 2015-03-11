@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.terabyte.stockmanager.model.Client;
 import com.terabyte.stockmanager.model.Job;
+import com.terabyte.stockmanager.model.Product;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -17,7 +18,13 @@ public class ClientServiceImpl implements ClientService {
 	private SessionFactory sessionFactory;
 	
 	public void create(Client client){
-		sessionFactory.getCurrentSession().save(client);	
+		sessionFactory.getCurrentSession().persist(client);
+		
+	}
+	
+	public void remove(Client client){
+		
+		sessionFactory.getCurrentSession().delete(client);
 		
 	}
 	
@@ -28,7 +35,7 @@ public class ClientServiceImpl implements ClientService {
 	
 	public List<Client> listByName(String name){
 		List<Client> clients = sessionFactory.getCurrentSession().
-		createQuery("FROM client where name='" + name +"'").list();
+		createQuery("FROM Client where name like '%" + name +"%'").list();
 		return clients;
 		
 	}
@@ -39,13 +46,17 @@ public class ClientServiceImpl implements ClientService {
 		
 	}
 	
+
+	
 	public List<Job> listJobsOfClient (Client client) {
 		List<Job> jobs = sessionFactory.getCurrentSession().createQuery("FROM Job where clientid =" + client.getId() ).list();
 		return jobs;
 	}
 
-	public Client getClientById(Integer clientId){
+	public Client getClientById(Long clientId){
 		return (Client) sessionFactory.getCurrentSession().get(Client.class,clientId);
 
 	}
+	
+
 }

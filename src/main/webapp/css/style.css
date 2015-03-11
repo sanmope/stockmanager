@@ -1,6 +1,7 @@
 @CHARSET "utf-8";
 
 html, body {
+	style="vertical-align:middle"
 	padding:0;
 	margin:0;
 	width:100%;
@@ -8,6 +9,7 @@ html, body {
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section { 
     display:block;
+    
 }
 
 body {
@@ -70,9 +72,14 @@ nav ul li a:HOVER {
 
 #mainContainer {
 	background: #f2f3f5;
-	-webkit-box-flex: 1;
-	-moz-box-flex:1;
+	-webkit-box-flex: 0;
+	-moz-box-flex:0;
 	padding: 20px;
+}
+
+#mainContainer label{
+
+	
 }
 
 #rightContainer {
@@ -276,4 +283,93 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     opacity: .5;
     top: 0;
     z-index:99;
+}
+
+
+
+<!-- ################### -->
+
+div {
+	display: inline-block;
+	font: bold 13px Times New Courier;
+	padding: 0px;
+}
+
+
+
+.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #f0f0f0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+
+#searchfield { display: block; width: 100%; text-align: center; margin-bottom: 35px; }
+ 
+#searchfield form {
+  display: inline-block;
+  background: #eeefed;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px 0 0 0;
+}
+#searchfield form .biginput {
+  width: 600px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  color: #aeaeae;
+  font-weight:normal;
+  font-size: 1.5em;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+#searchfield form .biginput:focus {
+  color: #858585;
+}
+
+.selected {
+    background-color: #999999;
+    color: #FFF;
+}
+
+
+#myTable2 tbody tr td input {
+   	border: 0px solid;
+   	width: 40px;
+}
+
+
+
+#total{
+	width: 80px;
+}
+
+#trPrint{
+	
+	align:right;
+}
+
+table tbody tr td #price{
+	width:40px;
+}
+
+table tbody tr td #quantity{
+	width:40px;
+}
+
+table tbody tr td #cost{
+	width:40px;
+}
+
+.myContainer form{
+	align:center;
+}
+
+table tr h2 #tdClient{
+	text-align:left;
+
 }

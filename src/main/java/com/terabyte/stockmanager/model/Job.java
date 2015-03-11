@@ -1,14 +1,17 @@
 package com.terabyte.stockmanager.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
+@Entity
 public class Job {
 
 	@Id @GeneratedValue
@@ -17,10 +20,14 @@ public class Job {
 	private Client client;
 	@ManyToOne
 	private Device device;
+	
 	@OneToMany
-	private ArrayList<ProductItem> productItems;
-	@OneToMany
-	private ArrayList<JobDetail> jobDetails;
+	@JoinColumn(name="job_id")
+	private List<ProductItem> productItems;
+
+	@OneToMany(cascade = {CascadeType.ALL} )
+	@JoinColumn(name="job_id")
+	private List<JobDetail> jobDetails;
 	
 	public void setId(long id) {
 		this.id = id;
@@ -46,27 +53,20 @@ public class Job {
 		this.device = device;
 	}
 
-	public ArrayList<ProductItem> getProductItems() {
+	public List<ProductItem> getProductItems() {
 		return productItems;
 	}
 
-	public void setProductItems(ArrayList<ProductItem> productItems) {
+	public void setProductItems(List<ProductItem> productItems) {
 		this.productItems = productItems;
 	}
 
-	public ArrayList<JobDetail> getJobDetails() {
+	public List<JobDetail> getJobDetails() {
 		return jobDetails;
 	}
 
-	public void setJobDetails(ArrayList<JobDetail> jobDetails) {
+	public void setJobDetails(List<JobDetail> jobDetails) {
 		this.jobDetails = jobDetails;
-	}
-
-
-
-	public void addProduct(Product product, BigDecimal quantity) {
-		productItems.add(new ProductItem(product, quantity));
-		product.decreaseQuantity(quantity);
 	}
 
 }

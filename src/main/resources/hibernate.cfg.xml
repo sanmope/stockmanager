@@ -10,8 +10,9 @@
 		<mapping class="com.terabyte.stockmanager.model.Authority"/>	
 		<mapping class="com.terabyte.stockmanager.model.Client"/>
 		<mapping class="com.terabyte.stockmanager.model.Job"/>
-		<!-- <mapping class="com.terabyte.stockmanager.model.Device"/>  -->
-		<!-- <mapping class="com.terabyte.stockmanager.model.JobDetail"/> -->
-		<!-- <mapping class="com.terabyte.stockmanager.model.ProductItem"/>	-->						
+		<mapping class="com.terabyte.stockmanager.model.Device"/>
+		<mapping class="com.terabyte.stockmanager.model.JobDetail"/>
+		<mapping class="com.terabyte.stockmanager.model.ProductItem"/>	
+		<mapping class="com.terabyte.stockmanager.model.Sale"/>					
     </session-factory>
 </hibernate-configuration>

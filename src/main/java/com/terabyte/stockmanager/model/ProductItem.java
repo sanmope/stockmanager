@@ -6,21 +6,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class ProductItem {
 
 	@Id @GeneratedValue
 	private long id;
+	private Integer quantity;
+	private BigDecimal price;
 	@ManyToOne
 	private Product product;
-	private BigDecimal quantity;
-	private BigDecimal price;
 	
-	public ProductItem(Product product, BigDecimal quantity) {
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 	
 }

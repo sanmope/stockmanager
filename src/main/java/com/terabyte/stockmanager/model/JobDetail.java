@@ -5,21 +5,21 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
 
 @Entity
 public class JobDetail {
 	
 	@Id @GeneratedValue
 	private long id;
-	private Job job;
 	String description;
 	Date date;
 	
 	
-	public JobDetail (String description,Job job){
+	public JobDetail (String description){
 		this.description = description;
 		this.date = new Date();
-		this.job = job;
 	}
 
 
@@ -44,6 +44,7 @@ public class JobDetail {
 
 
 	public String getDescription() {
+		this.date = new Date();
 		return description;
 	}
 
@@ -53,14 +54,5 @@ public class JobDetail {
 	}
 
 
-	public Job getJob() {
-		return job;
-	}
-
-
-	public void setJob(Job job) {
-		this.job = job;
-	}
-	
 	
 }
