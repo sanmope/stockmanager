@@ -1,6 +1,8 @@
 package com.terabyte.stockmanager.model;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,15 +22,73 @@ public class Job {
 	private Client client;
 	@ManyToOne
 	private Device device;
-	
 	@OneToMany
 	@JoinColumn(name="job_id")
 	private List<ProductItem> productItems;
-
 	@OneToMany(cascade = {CascadeType.ALL} )
 	@JoinColumn(name="job_id")
 	private List<JobDetail> jobDetails;
+	private Boolean presupuestado;
+	private Boolean reparado;
+	private Boolean entregado;
+	private Calendar fechaEntregado;
+	private Calendar fechaReparado;
+	private Calendar fechaPresupuestado;
 	
+
+	public Calendar getFechaEntregado() {
+		return fechaEntregado;
+	}
+
+	public void setFechaEntregado(Calendar fechaEntregado) {
+		this.fechaEntregado = fechaEntregado;
+	}
+
+	public Calendar getFechaReparado() {
+		return fechaReparado;
+	}
+
+	public void setFechaReparado(Calendar fechaReparado) {
+		this.fechaReparado = fechaReparado;
+	}
+
+	public Calendar getFechaPresupuestado() {
+		return fechaPresupuestado;
+	}
+
+	public void setFechaPresupuestado(Calendar fechaPresupuestado) {
+		this.fechaPresupuestado = fechaPresupuestado;
+	}
+
+	
+	
+	public Boolean getPresupuestado() {
+		return presupuestado;
+	}
+
+	public void setPresupuestado(Boolean presupuestado) {
+		this.presupuestado = presupuestado;
+	}
+
+	public Boolean getReparado() {
+		return reparado;
+	}
+
+	public void setReparado(Boolean reparado) {
+		this.reparado = reparado;
+	}
+
+	public Boolean getEntregado() {
+		return entregado;
+	}
+
+	public void setEntregado(Boolean entregado) {
+		this.entregado = entregado;
+	}
+
+
+	
+
 	public void setId(long id) {
 		this.id = id;
 	}

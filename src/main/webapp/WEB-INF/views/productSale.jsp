@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title class="noPrint">Venta de Producto</title>
+
+
 <mytags:jquery />
 <mytags:style />
 
@@ -107,6 +109,52 @@
 
 <div>
 
+
+ 
+<form:form method="post" name="classForm" id="classForm" commandName="classCommand">
+			<table id="myTableForm">
+				
+				<tr class="hidden">
+					<td>Product id</td>
+					<td>
+						<spring:bind path="classCommand.productItems[0].product.id">
+<%-- 							<form:input class="productId" path="${status.expression}" size="40" /> --%>
+			  			</spring:bind>
+					</td>
+					<td>quantity</td>
+					<td>
+						<spring:bind path="classCommand.productItems[0].quantity">
+<%-- 							<form:input class="quantity" path="${status.expression}" size="40" /> --%>
+			  			</spring:bind>
+					</td>
+					<td>Price</td>
+					<td>
+						<spring:bind path="classCommand.productItems[0].price">
+<%-- 							<form:input class="price" path="${status.expression}" size="40" /> --%>
+			  			</spring:bind>
+<!-- 					</td>
+					<td><input type="button" id="addProductItemButton" value="Add" /></td> -->
+				</tr>
+				<tr id="submitRow">
+					<td>
+						<spring:bind path="classCommand.saleTotal">
+							<form:input class="saleTotal hidden" path="${status.expression}" size="40" />
+			  			</spring:bind>
+					</td>
+					<td>
+						<spring:bind path="classCommand.clientId">
+							<form:input class="clientId hidden" path="${status.expression}" value="-1" size="40" />
+			  			</spring:bind>
+					</td>
+					<td>&nbsp;</td>
+					<td><input type="submit" name="saleOrPreSale" value="Generar Presupuesto" /></td>
+					<td><input type="submit" name="saleOrPreSale" value="Generar Venta" /></td>
+				</tr>
+			</table>
+		</form:form>
+
+</div>
+
 <script>
 
 $(document).ready( function() {
@@ -194,51 +242,6 @@ function calculateTotal() {
 	
 } */
 </script>
- 
-<form:form method="post" name="classForm" id="classForm" commandName="classCommand">
-			<table id="myTableForm">
-				
-				<tr class="hidden">
-					<td>Product id</td>
-					<td>
-						<spring:bind path="classCommand.productItems[0].product.id">
-<%-- 							<form:input class="productId" path="${status.expression}" size="40" /> --%>
-			  			</spring:bind>
-					</td>
-					<td>quantity</td>
-					<td>
-						<spring:bind path="classCommand.productItems[0].quantity">
-<%-- 							<form:input class="quantity" path="${status.expression}" size="40" /> --%>
-			  			</spring:bind>
-					</td>
-					<td>Price</td>
-					<td>
-						<spring:bind path="classCommand.productItems[0].price">
-<%-- 							<form:input class="price" path="${status.expression}" size="40" /> --%>
-			  			</spring:bind>
-<!-- 					</td>
-					<td><input type="button" id="addProductItemButton" value="Add" /></td> -->
-				</tr>
-				<tr id="submitRow">
-					<td>
-						<spring:bind path="classCommand.saleTotal">
-							<form:input class="saleTotal hidden" path="${status.expression}" size="40" />
-			  			</spring:bind>
-					</td>
-					<td>
-						<spring:bind path="classCommand.clientId">
-							<form:input class="clientId hidden" path="${status.expression}" value="-1" size="40" />
-			  			</spring:bind>
-					</td>
-					<td>&nbsp;</td>
-					<td><input type="submit" name="saleOrPreSale" value="Generar Presupuesto" /></td>
-					<td><input type="submit" name="saleOrPreSale" value="Generar Venta" /></td>
-				</tr>
-			</table>
-		</form:form>
-
-</div>
-
 
 
 </body>

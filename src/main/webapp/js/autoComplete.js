@@ -64,6 +64,44 @@ $(function() {
 });
 
 $(function() {
+
+	$( "#query_job_by_Client" ).autocomplete({
+      source:function (request, response) {
+            $.getJSON("/getClientList.htm", request, function(result) {
+                response($.map(result, function(item) {
+                    return {
+                        // following property gets displayed in drop down
+                        label: item.name + ' - ' + item.lastName + ' - ' + item.eMail + ' - ' + item.address, 
+                        value: item.name + " " + item.lastName ,
+                        name: item.name + ' ' + item.lastName,
+                        eMail: item.eMail,
+                        address: item.address, 
+                        occupation:item.occupation,
+                        phone:+ 'Celular:' + item.phoneCell + 'Oficina:' + item.phoneOffice  + 'Casa:' + item.phoneHome,
+                        id: item.id
+                }
+                }));
+            });
+        },
+       minLength: 2, 
+      select: function(event, ui) {
+        if (ui.item) {
+            event.preventDefault();
+            
+            window.location="listJobByClient.htm?id=" + ui.item.id;
+            /*xmlhttp=new XMLHttpRequest();
+            
+            xmlhttp.open("GET","listJobByClient.htm?id=" + ui.item.id,true);
+            xmlhttp.send();
+            */
+        	return false;
+        }
+    } 
+    });
+	
+});
+
+$(function() {
 $( "#query_product" ).autocomplete({
     source:function (request, response) {
           $.getJSON("/getProductList.htm", request, function(result) {
@@ -89,5 +127,8 @@ $( "#query_product" ).autocomplete({
       }
   } 
   });
+
+
+
             
 });

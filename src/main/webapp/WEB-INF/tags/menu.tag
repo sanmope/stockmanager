@@ -8,6 +8,7 @@
 		<li>Incrementar Precio</li>
 		<li><a href="productSale.htm">Venta de Producto</></li>
 		<li><a href="search.htm">Buscar</a></li>
+		<li><a href="job.htm">Ordenes de Trabajo</a></li>
 	</ul>
 </nav>
 <hr />

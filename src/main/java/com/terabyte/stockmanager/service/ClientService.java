@@ -14,7 +14,6 @@ public interface ClientService {
 
 	List<Client> listByName(String name);
 	List<Client> listClients();
-	List<Job> listJobsOfClient (Client client);
 	Client getClientById(Long clientid);
 	
 }

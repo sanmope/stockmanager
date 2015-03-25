@@ -47,11 +47,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 	
 
-	
-	public List<Job> listJobsOfClient (Client client) {
-		List<Job> jobs = sessionFactory.getCurrentSession().createQuery("FROM Job where clientid =" + client.getId() ).list();
-		return jobs;
-	}
+
 
 	public Client getClientById(Long clientId){
 		return (Client) sessionFactory.getCurrentSession().get(Client.class,clientId);

@@ -7,6 +7,7 @@ import org.springframework.util.AutoPopulatingList;
 public class ClassCommand {
 	private String className = null;
 	private AutoPopulatingList productItems = null;
+	private AutoPopulatingList jobDetail = null;
 	private BigDecimal saleTotal=null;
 	private Long clientId=null;
  
@@ -27,6 +28,14 @@ public class ClassCommand {
 		this.productItems = productItems;
 	}
 
+	public void setJobDetail(AutoPopulatingList jobDetail) {
+		this.jobDetail = jobDetail;
+	}
+	
+	public AutoPopulatingList getJobDetail() {
+		return jobDetail;
+	}
+	
 	public BigDecimal getSaleTotal() {
 		return saleTotal;
 	}

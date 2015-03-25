@@ -1,5 +1,6 @@
 package com.terabyte.stockmanager.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,21 +15,21 @@ public class JobDetail {
 	@Id @GeneratedValue
 	private long id;
 	String description;
-	Date date;
+	Calendar date;
 	
 	
 	public JobDetail (String description){
 		this.description = description;
-		this.date = new Date();
+		this.date = Calendar.getInstance();
 	}
 
 
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
 
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 
@@ -44,7 +45,6 @@ public class JobDetail {
 
 
 	public String getDescription() {
-		this.date = new Date();
 		return description;
 	}
 
