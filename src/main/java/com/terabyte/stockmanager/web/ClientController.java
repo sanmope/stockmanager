@@ -57,14 +57,11 @@ public class ClientController {
 	 @RequestMapping(value="client/edit.htm", method= RequestMethod.GET	)
 	    public ModelAndView editClient(@RequestParam int id,  
 	    @ModelAttribute Client c) {
-			 HashMap<String, String> map = new HashMap<String, String>();
-	
-			 map.put("Herbology", "book Herbology"); 
-			 map.put("Quidditch", "book Quidditch"); 
+
+
 
 		    Client client = clientService.getClientById(new Long(id));
 		    ModelAndView modelAndView = new ModelAndView();
-		    modelAndView.addObject("map",map);
 		    modelAndView.setViewName("client");
 		    modelAndView.addObject("client", client);
 		    return modelAndView;

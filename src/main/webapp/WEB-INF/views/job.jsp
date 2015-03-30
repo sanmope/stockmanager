@@ -13,70 +13,21 @@
  
  <script>
  
-function Add(){
-	$("#tblData tbody").append(
-		"<tr>"+
-		"<td><input type='text'/></td>"+
-		"<td><input type='text'/></td>"+
-		"<td><input type='text'/></td>"+
-		"<td><img src='images/disk.png' class='btnSave'><img src='images/delete.png' class='btnDelete'/></td>"+
-		"</tr>");
-	
-		$(".btnSave").bind("click", Save);		
-		$(".btnDelete").bind("click", Delete);
-}; 
-
-function Save(){
-	var par = $(this).parent().parent(); //tr
-	var tdName = par.children("td:nth-child(1)");
-	var tdPhone = par.children("td:nth-child(2)");
-	var tdEmail = par.children("td:nth-child(3)");
-	var tdButtons = par.children("td:nth-child(4)");
-
-	tdName.html(tdName.children("input[type=text]").val());
-	tdPhone.html(tdPhone.children("input[type=text]").val());
-	tdEmail.html(tdEmail.children("input[type=text]").val());
-	tdButtons.html("<img src='images/delete.png' class='btnDelete'/><img src='images/pencil.png' class='btnEdit'/>");
-
-	$(".btnEdit").bind("click", Edit);
-	$(".btnDelete").bind("click", Delete);
-}; 
-
-function Edit(){
-	var par = $(this).parent().parent(); //tr
-	var tdName = par.children("td:nth-child(1)");
-	var tdPhone = par.children("td:nth-child(2)");
-	var tdEmail = par.children("td:nth-child(3)");
-	var tdButtons = par.children("td:nth-child(4)");
-
-	tdName.html("<input type='text' id='txtName' value='"+tdName.html()+"'/>");
-	tdPhone.html("<input type='text' id='txtPhone' value='"+tdPhone.html()+"'/>");
-	tdEmail.html("<input type='text' id='txtEmail' value='"+tdEmail.html()+"'/>");
-	tdButtons.html("<img src='images/disk.png' class='btnSave'/>");
-
-	$(".btnSave").bind("click", Save);
-	$(".btnEdit").bind("click", Edit);
-	$(".btnDelete").bind("click", Delete);
-};
-
-
-function Delete(){
-	var par = $(this).parent().parent(); //tr
-	par.remove();
-}; 
 
 
 
-$(function(){
-	//Add, Save, Edit and Delete functions code
-	$(".btnEdit").bind("click", Edit);
-	$(".btnDelete").bind("click", Delete);
-	$("#btnAdd").bind("click", Add);
-});
 
 
-
-	
+$(document).ready( function() {
+	$('#myTable tr').click(function(){
+  		$('#jobId').val($(this).find('td:first').html());
+  		$('#clientId').val($(this).find('td:eq(8)').html());
+  		$('#deviceId').val($(this).find('td:eq(9)').html());
+  		$('#jobDescription').val($(this).find('td:eq(4)').html());
+  		
+		
+	})
+});	
  
  
  </script>
@@ -99,12 +50,16 @@ $(function(){
 						<table id="myTable" class= "table table-stripped table-bordered table-hover table-condensed">
 							<thead>
 								<tr>
-									<th>Numero</th>
-									<th>Detalle</th>
+									<th>N trabajo</th>
+									<th>Aparato</th>
+									<th>Caracteristicas</th>
+									<th>N Serie</th>
+									<th>Detalle Reparacion</th>
 									<th>Presupuestado</th>
 									<th>Reparado</th>
 									<th>Entregado</th>
-									
+									<th class="hidden">clientId</th>
+									<th class="hidden">deviceId</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -115,55 +70,76 @@ $(function(){
 								</tr>
 							</tfoot>
 							<tbody>
-								<tr id="jobRow">
 								<c:forEach var="job" items="${jobList}">
-									<td><c:out value="${job.id}"/></td>
+								<tr id="jobRow">
+									<td ><c:out value="${job.id}"/></td>
+									<td >${job.device.name}</td>
 									<td>${job.device.description}</td>
+									<td >${job.device.barCode}</td>
+									<td >${job.description}</td>
 									<c:choose>
-										<c:when test="${job.presupuestado == true}"><td><img src='images/tick.png'></td></c:when>
-										<c:when test="${job.presupuestado == false}"><td><img src='images/pendiente.png'></c:when>
+										<c:when test="${job.presupuestado == true}"><td id="jobPresupuestado"><img src='images/tick.png'></td></c:when>
+										<c:when test="${job.presupuestado == false}"><td id="jobPresupuestado"><img src='images/pendiente.png'></td></c:when>
 									</c:choose>
 									
 									<c:choose>
-											<c:when test="${job.reparado == true}">	<td><img src='images/tick.png'></td></c:when>
-											<c:when test="${job.reparado == false}"><td><img src='images/pendiente.png'></c:when>
+											<c:when test="${job.reparado == true}">	<td id="jobReparado"><img src='images/tick.png'></td></c:when>
+											<c:when test="${job.reparado == false}"><td id="jobReparado"><img src='images/pendiente.png'></td></c:when>
 									</c:choose>
 									
 									<c:choose>
-										<c:when test="${job.entregado == true}"> <td><img src='images/tick.png'></td>   </c:when>
-										<c:when test="${job.entregado == false}"><td><img src='images/pendiente.png'></c:when>
+										<c:when test="${job.entregado == true}"> <td id="jobEntregado"><img src='images/tick.png'></td>   </c:when>
+										<c:when test="${job.entregado == false}"><td id="jobEntregado"><img src='images/pendiente.png'></td></c:when>
 									</c:choose>
-						
-								</tr>	
-								</c:forEach>
+								<td class="hidden" >${job.client.id}</td>
+								<td class="hidden" >${job.device.id}</td>
+								</tr>
+								</c:forEach>						
 							</tbody>
 						</table>
 						</div>
 				</c:when>
 				<c:otherwise>sin ordenes de Trabajo</c:otherwise>
 			</c:choose>
+
 		</div>
 		<div>
-			<h3 >Nueva orden de Trabajo</h3>
+			<h3 >Orden de Trabajo</h3>
 			
-
-					
+</head>
+<body>
+<h1></h1>
+	<div id="mainContainer"> 
+		<c:url var="addAction" value="/job/add.htm" ></c:url>
+		 
+		<form:form action="${addAction}" commandName="job">
+		<table id=tablaOrdenDeTrabajo>
+			        <td>
+			            <form:input  id="jobId" path="id" readonly="true" size="8"  disabled="true" />
+			        </td>
+			    <tr>
+			        <td>
+			            <form:input id="clientId" path="client.id" />
+			        </td>
+			        <td>
+			            <form:input id="deviceId" path="device.id" />
+			        </td>
+			        <td>
+			            <form:input id="jobDescription" path="description" />
+			        </td>
+			    </tr>
+			  	<tr id="addButton">
+			
+					<td><input type="submit" name="action" value="Agregar Orden" />	</td>				
+		    	</tr>
+		    	<tr id="editButton">
+		    		<td><input type="submit" name="action" value="Editar Orden" /></td>
+		    	</tr>
+		    	
+		    </table>
+		</form:form>
 				
-							
-				<button id="btnAdd">Nuevo</button>
-				<table id="tblData">			
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Phone</th>
-							<th>Email</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-			
+
 		</div>
 		
 	

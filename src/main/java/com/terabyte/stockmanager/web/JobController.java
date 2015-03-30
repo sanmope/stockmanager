@@ -9,7 +9,9 @@ import java.util.Map;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.terabyte.stockmanager.model.Client;
+import com.terabyte.stockmanager.model.Device;
 import com.terabyte.stockmanager.model.Job;
 import com.terabyte.stockmanager.model.JobDetail;
 import com.terabyte.stockmanager.service.ClientService;
@@ -31,28 +34,34 @@ public class JobController {
 	@Autowired
 	private ClientService clientService;
 	
-	
-	@RequestMapping(value="/newJob", method=RequestMethod.POST)
-	public ModelAndView newJob(Client client,Job job, Errors errors){
-		if (errors.hasErrors())	{
-
-		}
-		
-		ModelAndView modelAndView = new ModelAndView("Job");
-		modelAndView.addObject("errors", errors);
-		return modelAndView;
-
-	}
+	 @RequestMapping(value="/job.htm" ,  method = RequestMethod.GET)
+	    public String job(Model model) {
+	        model.addAttribute("job", new Job());
+	        model.addAttribute("device", new Device());
+	        return "job";
+	    }
+	 
+	 @RequestMapping(value= "job/add.htm", method = RequestMethod.POST)
+	    public String addJob(@ModelAttribute("job") Job job,@RequestParam String action){
+	         
+	        if(action.equals("Agregar Orden")){
+	            jobService.create(job);
+	        }else{
+	            jobService.update(job);
+	        }
+	         
+	        return "redirect:/job.htm";
+	         
+	    } 
+	 
 	
 	@RequestMapping(value="/listJobByClient", method=RequestMethod.GET)
 	public ModelAndView listJob(Long id){
 		
 		Client client = clientService.getClientById(id);
-/*		Job job = jobService.listJobsByClient(client).get(1);
-		job.setFechaPresupuestado(Calendar.getInstance());
-		jobService.update(job);*/
 		List<Job> jobList = jobService.listJobsByClient(client);
 		ModelAndView modelAndView = new ModelAndView("job");
+		modelAndView.addObject("job", new Job());
 		modelAndView.addObject("jobList", jobList);
 		modelAndView.addObject("client", client);			
 		return modelAndView;

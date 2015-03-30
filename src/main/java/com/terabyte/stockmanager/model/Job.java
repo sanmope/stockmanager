@@ -28,13 +28,22 @@ public class Job {
 	@OneToMany(cascade = {CascadeType.ALL} )
 	@JoinColumn(name="job_id")
 	private List<JobDetail> jobDetails;
+	private String description;
 	private Boolean presupuestado;
 	private Boolean reparado;
 	private Boolean entregado;
 	private Calendar fechaEntregado;
 	private Calendar fechaReparado;
 	private Calendar fechaPresupuestado;
-	
+	private Calendar fechaOrdenTrabajo;
+
+	public Calendar getFechaOrdenTrabajo() {
+		return fechaOrdenTrabajo;
+	}
+
+	public void setFechaOrdenTrabajo(Calendar fechaOrdenTrabajo) {
+		this.fechaOrdenTrabajo = fechaOrdenTrabajo;
+	}
 
 	public Calendar getFechaEntregado() {
 		return fechaEntregado;
@@ -127,6 +136,14 @@ public class Job {
 
 	public void setJobDetails(List<JobDetail> jobDetails) {
 		this.jobDetails = jobDetails;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

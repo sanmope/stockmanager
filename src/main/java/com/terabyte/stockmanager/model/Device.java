@@ -8,7 +8,8 @@ import javax.persistence.Id;
 public class Device {
 	@Id @GeneratedValue
 	private long id;
-	private Integer barcode;
+	private Integer barCode;
+	private String name;
 	private String description;
 	
 	public long getId() {
@@ -23,11 +24,17 @@ public class Device {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getBarcode() {
-		return barcode;
+	public Integer getBarCode() {
+		return barCode;
 	}
-	public void setBarcode(Integer barcode) {
-		this.barcode = barcode;
+	public void setBarCode(Integer barcode) {
+		this.barCode = barcode;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -100,26 +100,7 @@
 			        </td>
 			        <td>
 			            <form:input path="age" />
-			        </td>   
-<%-- <!-- 			    </tr> -->
- 	        	<tr>
-				    <td>Interests:</td>
-	            <td>
-	                Quidditch: <form:checkbox path="interests" value="Quidditch"/>
-	                Herbology: <form:checkbox path="interests" value="Herbology"/>
-	                Defence Against the Dark Arts: <form:checkbox path="interests" value="Defence Against the Dark Arts"/>
-	            </td>
-				</tr>
-				<tr>
-		            <td>Interests:</td>
-		            <td>
-		                <form:select path="interests">
-		                	<form:option value="-" label="--Please Select"/>
-				            <form:options items="${listClients}" itemValue="id" itemLabel="name"/>
-				        </form:select>
-		                
-		            </td>
-		        </tr>  --%>
+			        </td>  
 			    <tr> 
 			        <td>
 			            <form:label path="address">
